@@ -28,7 +28,6 @@ class _SearchState extends State<Search> {
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 height: 60,
-
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
@@ -41,7 +40,11 @@ class _SearchState extends State<Search> {
                 child: Center(
                   child: TextField(
                     onSubmitted: (text){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultPage(text: text,)));
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (context)=>ResultPage(text: text,)
+                      ),
+                      );
                     },
                     style: TextStyle(fontSize: 25, ),
                     textAlign: TextAlign.justify,
@@ -56,16 +59,11 @@ class _SearchState extends State<Search> {
                       contentPadding:
                       EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
                       icon: Icon(Icons.search),
-
                     ),
-
                   ),
                 ),
               ),
             ),
-
-
-
       ),
     );
   }

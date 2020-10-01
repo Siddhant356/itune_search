@@ -18,17 +18,18 @@ class Result{
   String artworkUrl60;
   String trackExplicitness;
   String primaryGenreName;
+  String wrapperType;
 
   Result({this.trackName, this.artistName, this.artworkUrl60,
-      this.trackExplicitness, this.primaryGenreName});
+      this.trackExplicitness, this.primaryGenreName, this.wrapperType});
   factory Result.fromJson(Map<String, dynamic> json) {
     return Result(
     trackName: json["trackName"],
     artistName: json["artistName"],
       artworkUrl60: json["artworkUrl60"],
       trackExplicitness: json["trackExplicitness"],
-      primaryGenreName: json["primaryGenreName"]
-
+      primaryGenreName: json["primaryGenreName"],
+      wrapperType: json["wrapperType"],
     );
   }
 }
