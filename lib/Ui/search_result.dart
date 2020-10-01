@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:itune_flutter/model/result_class.dart';
@@ -48,35 +49,72 @@ class _ResultPageState extends State<ResultPage> {
   }
   Widget createListView(List data, BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: data.length,
           itemBuilder: (context, int index){
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ListTile(
-                  title: Text("${data[index].trackName}", ),
-                  subtitle: (data[index].trackExplicitness=="notExplicit")?Text("${data[index].artistName}"):Row(
-                        children: <Widget>[
-                          Icon(Icons.explicit, color: Colors.grey, size: 18,),
+            return Card(
+              elevation: 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ListTile(
+                    title: (data[index].trackName != null)
+                        ?Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            "${data[index].trackName}",
+                            style: TextStyle(fontSize: 16),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                        :Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            "${data[index].wrapperType}",
+                            style: TextStyle(fontSize: 16),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    subtitle: (data[index].trackExplicitness=="notExplicit")
+                        ?Text("${data[index].artistName}", overflow: TextOverflow.ellipsis, softWrap: true,)
+                        :Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.explicit, color: Colors.grey, size: 18,
+                            ),
+                            Expanded(
+                                child: Text(
+                                    "${data[index].artistName}", overflow: TextOverflow.ellipsis, softWrap: true,)
+                            ),
+                          ],
+                        ),
+                    leading: Column(
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 28,
+                          backgroundImage: NetworkImage("${data[index].artworkUrl60}"),
 
-                              Text("${data[index].artistName}"),
-                        ],
+                        ),
+                      ],
+                    ),
+                    trailing: Chip(
+                      elevation: 3,
+                      label: Text(
+                        "${data[index].primaryGenreName}",
+                        style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
-
-                  leading: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 28,
-                        backgroundImage: NetworkImage("${data[index].artworkUrl60}"),
-
-                      )
-                    ],
+                      backgroundColor: Colors.black87,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }),
     );
