@@ -1,6 +1,9 @@
 # itune_flutter
 
-A new Flutter application.
+Flutter application to search for music.
+
+<img src = "https://github.com/Siddhant356/itune_search/blob/master/Screenshots/Screenshot_1601561410.png" width ="200" />          <img src = "https://github.com/Siddhant356/itune_search/blob/master/Screenshots/Screenshot_1601561419.png" width ="200" />
+
 
 ## Getting Started
 
